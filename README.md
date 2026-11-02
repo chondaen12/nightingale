@@ -151,3 +151,10 @@ Nightingale is free, open source, and maintained in spare time. Support ongoing 
 ## License
 
 GPL-3.0-or-later — see [LICENSE](LICENSE).
+
+### Older NVIDIA GPUs
+
+An experimental [GTX 750 Ti / Maxwell Docker setup](docker/maxwell/README.md)
+is available with pinned CUDA 11.8 dependencies, UVR separation on GPU, and
+CPU transcription/alignment. It uses a tested published image rather than
+building the current source checkout.

@@ -1,0 +1,5 @@
+vendor/
+test-output/
+.env
+__pycache__/
+compat/__pycache__/

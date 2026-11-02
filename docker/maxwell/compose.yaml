@@ -1,0 +1,22 @@
+services:
+  nightingale-maxwell:
+    image: razzaru/nightingale@sha256:5f3b7b34e42830ef4e6227aa69461059c5993a6328ea4d83f8874b3c6b21863c
+    restart: unless-stopped
+    gpus: all
+    ports:
+      - "${NIGHTINGALE_PORT:-64449}:8080"
+    environment:
+      NIGHTINGALE_DATA_PATH: /data
+      NIGHTINGALE_BIND: 0.0.0.0:8080
+      NIGHTINGALE_LIBRARY_PATH: /songs
+      HOME: /data
+      PYTHONPATH: /gpu:/data/vendor/analyzer
+      FFMPEG_PATH: /data/vendor/ffmpeg
+      PATH: /data/vendor:/data/vendor/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      NVIDIA_DRIVER_CAPABILITIES: compute,utility
+      NIGHTINGALE_GPU_SEGMENT: "128"
+    volumes:
+      - ${NIGHTINGALE_DATA_DIR:?Set NIGHTINGALE_DATA_DIR to your existing data folder}:/data
+      - ./vendor:/data/vendor
+      - ./compat:/gpu:ro
+      - ${NIGHTINGALE_MUSIC_DIR:?Set NIGHTINGALE_MUSIC_DIR to your music folder}:/songs:ro

@@ -57,6 +57,12 @@ if os.environ.get("NIGHTINGALE_GPU_COMPAT", "1") == "1":
     import gpu
     import whisper_compat
 
+    # WhisperX does not ship a default Thai alignment model.
+    import whisperx.alignment
+    whisperx.alignment.DEFAULT_ALIGN_MODELS_HF.setdefault(
+        "th", "airesearch/wav2vec2-large-xlsr-53-th"
+    )
+
     _compute_type_for = whisper_compat.compute_type_for
     whisper_compat.compute_type_for = lambda device: "int8" if device == "cpu" else _compute_type_for(device)
 

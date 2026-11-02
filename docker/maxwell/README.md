@@ -15,6 +15,11 @@ load incompatible CUDA 12 libraries), flash attention, cuDNN and compilation.
 It deserializes Roformer on CPU and releases nested separator models after use.
 A Demucs memory fallback is included, but select **Karaoke** for UVR.
 
+Thai alignment explicitly selects `airesearch/wav2vec2-large-xlsr-53-th`,
+because this WhisperX version has no default model for `th`. The model downloads
+to the persistent Hugging Face cache on first use. A running analyzer must be
+reloaded after changing the compatibility module.
+
 ## Prepare from an existing installation
 
 Finish normal Nightingale dependency setup first. These commands assume its
